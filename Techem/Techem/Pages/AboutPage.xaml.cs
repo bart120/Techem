@@ -10,11 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace Techem.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MasterPage : TabbedPage
-    {
-		public MasterPage ()
+	public partial class AboutPage : ContentPage
+	{
+		public AboutPage ()
 		{
 			InitializeComponent ();
 		}
-	}
+
+    }
 }

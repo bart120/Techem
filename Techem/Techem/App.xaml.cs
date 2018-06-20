@@ -11,6 +11,7 @@ namespace Techem
 		public App ()
 		{
 			InitializeComponent();
+            
 
 			MainPage = new MasterPage();
 		}
