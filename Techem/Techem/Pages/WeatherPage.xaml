@@ -4,9 +4,29 @@
              x:Class="Techem.Pages.WeatherPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Weather!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Entry x:Name="EntryCity" Placeholder="Saisir une ville" />
+                <Button Text="OK" Clicked="Button_Clicked" />
+            </StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Label Text="{Binding City}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+
+                <Label Grid.Row="1" Text="Température (°C)" />
+                <Label Text="{Binding Temperature}" Grid.Row="1" Grid.Column="1"/>
+
+                <Label Grid.Row="2" Text="Soleil" />
+                <Label  Grid.Row="2" Grid.Column="1"/>
+
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

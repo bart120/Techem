@@ -15,12 +15,13 @@ namespace Techem.Pages
 		public WeatherPage ()
 		{
 			InitializeComponent ();
-            test(this, null);
+            
 		}
 
-        public async void test (object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            await WeatherService.GetWeatherByCity("le plessis robinson");
+            var weather = await WeatherService.GetWeatherByCity(this.EntryCity.Text);
+            BindingContext = weather;
         }
-	}
+    }
 }

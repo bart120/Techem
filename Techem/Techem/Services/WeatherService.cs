@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Techem.Models;
@@ -22,12 +23,11 @@ namespace Techem.Services
             var result = await ApiService.GetDataFromServiceAsync(url).ConfigureAwait(false);
             if(result != null)
             {
-                var weather = new Weather
-                {
-                    City = result["name"],
-                    Temperature = Convert.ToDouble(result["main"]["temp"].ToString()),
-                    Icon = result["weather"][0]["icon"].ToString()
-                };
+                var weather = new Weather();
+
+                weather.City = result["name"];
+                weather.Temperature = Convert.ToDouble(result["main"]["temp"].ToString());
+                weather.Icon = result["weather"][0]["icon"].ToString();
 
                 DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0);
                 weather.Sun.Sunrise = dt.AddSeconds((double)result["sys"]["sunrise"]);

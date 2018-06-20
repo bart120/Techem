@@ -17,6 +17,7 @@ namespace Techem.Services
                 if (response != null)
                 {
                     string json = response.Content.ReadAsStringAsync().Result;
+                    Console.WriteLine(json);
                     dynamic data = JsonConvert.DeserializeObject(json);
                     return data;
                 }
