@@ -1,4 +1,5 @@
 using System;
+using Techem.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace Techem
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new MasterPage();
 		}
 
 		protected override void OnStart ()
