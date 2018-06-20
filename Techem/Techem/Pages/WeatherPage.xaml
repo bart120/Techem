@@ -12,6 +12,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Button Image="geo.png" Clicked="ButtonGeo_Clicked" />
                 <Entry x:Name="EntryCity" Placeholder="Saisir une ville" />
                 <Button Text="OK" Clicked="Button_Clicked" />
             </StackLayout>
