@@ -32,5 +32,10 @@ namespace Techem.Data
                 return await db.UpdateAsync(city);
             }
         }
+
+        public async Task<List<City>> GetAllAsync()
+        {
+            return await db.QueryAsync<City>("SELECT * FROM [City];");
+        }
     }
 }

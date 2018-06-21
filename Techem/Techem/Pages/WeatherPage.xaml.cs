@@ -38,6 +38,7 @@ namespace Techem.Pages
                 //await DisplayAlert("Geo", $"long: {position.Longitude}, lat: {position.Latitude}", "OK");
                 var weather = await WeatherService.GetWeatherByGeoloc(position.Longitude, position.Latitude);
                 this.BindingContext = weather;
+                //((Weather)BindingContext).City = weather.City;
             }
             else
                 await DisplayAlert("Geo", "Impossible de géolocaliser", "OK");
@@ -52,10 +53,17 @@ namespace Techem.Pages
                 {
                     Name = weather.City
                 };
+                
                 await App.DB.SaveAsync(city);
                 await DisplayAlert("Ajouter une ville", $"Enregistrement de {city.Name} OK.", "OK");
             }
             
+        }
+
+        private async void ButtonFavoris_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new FavoritesPage()));
+            //await Navigation.PushAsync(new NavigationPage(new FavoritesPage()));
         }
 
     }

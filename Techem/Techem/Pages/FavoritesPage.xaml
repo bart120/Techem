@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Techem.Pages.FavoritesPage"
+             Title="Villes favorites">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="CitiesListView" ItemsSource="{Binding Cities}"
+                      VerticalOptions="FillAndExpand" HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding LoadCitiesCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Name}" LineBreakMode="NoWrap" FontSize="Large" />
+                                <!-- <Label Text="{Binding Source={x:Reference CitiesListView}, Path=Count}"></Label> -->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Nombre de viles: "/>
+                <Label Text="{Binding Count}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
