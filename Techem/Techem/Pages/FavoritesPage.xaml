@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Techem.Pages.FavoritesPage"
              Title="Villes favorites">
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Trash.png" Command="{Binding LoadCitiesCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="CitiesListView" ItemsSource="{Binding Cities}"
@@ -13,16 +15,24 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Name}" LineBreakMode="NoWrap" FontSize="Large" />
+                            <Grid Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <Label Text="{Binding Name}" LineBreakMode="NoWrap" 
+                                       FontSize="Large" />
                                 <!-- <Label Text="{Binding Source={x:Reference CitiesListView}, Path=Count}"></Label> -->
-                            </StackLayout>
+
+                                <Button Image="Trash.png" Grid.Column="1" WidthRequest="50" HeightRequest="50" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Nombre de viles: "/>
+                <Label Text="Nombre de villes: "/>
                 <Label Text="{Binding Count}" />
             </StackLayout>
         </StackLayout>

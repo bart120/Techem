@@ -32,6 +32,7 @@ namespace Techem.ViewModels
 
         protected async Task ExecuteLoadCitiesCommand()
         {
+            this.Cities.Clear();
             var cities = await App.DB.GetAllAsync();
             //this.Cities = cities;
             foreach (var item in cities)
