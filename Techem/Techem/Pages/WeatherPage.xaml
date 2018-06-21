@@ -9,6 +9,15 @@
             <converters:IconConverter x:Key="IconConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="ButtonAdd_Clicked" Text="Ajouter">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="add.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">

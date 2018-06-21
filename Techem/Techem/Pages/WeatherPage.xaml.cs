@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Techem.Models;
 using Techem.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,11 +35,28 @@ namespace Techem.Pages
 
                 var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(10));
 
-                await DisplayAlert("Geo", $"long: {position.Longitude}, lat: {position.Latitude}", "OK");
+                //await DisplayAlert("Geo", $"long: {position.Longitude}, lat: {position.Latitude}", "OK");
+                var weather = await WeatherService.GetWeatherByGeoloc(position.Longitude, position.Latitude);
+                this.BindingContext = weather;
             }
             else
                 await DisplayAlert("Geo", "Impossible de géolocaliser", "OK");
-
         }
+
+        private async void ButtonAdd_Clicked(object sender, EventArgs e)
+        {
+            if (BindingContext != null)
+            {
+                var weather = BindingContext as Weather;
+                City city = new City
+                {
+                    Name = weather.City
+                };
+                await App.DB.SaveAsync(city);
+                await DisplayAlert("Ajouter une ville", $"Enregistrement de {city.Name} OK.", "OK");
+            }
+            
+        }
+
     }
 }

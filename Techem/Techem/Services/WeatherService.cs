@@ -18,6 +18,12 @@ namespace Techem.Services
             return await GetDataAsync(uri);
         }
 
+        public static async Task<Weather> GetWeatherByGeoloc(double lon, double lat)
+        {
+            string uri = $"{url}lon={lon.ToString()}&lat={lat.ToString()}&appid={key}&units=metric";
+            return await GetDataAsync(uri);
+        }
+
         private async static Task<Weather> GetDataAsync(string url)
         {
             var result = await ApiService.GetDataFromServiceAsync(url).ConfigureAwait(false);
@@ -30,8 +36,8 @@ namespace Techem.Services
                 weather.Icon = result["weather"][0]["icon"].ToString();
 
                 DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0);
-                weather.Sun.Sunrise = dt.AddSeconds((double)result["sys"]["sunrise"]);
-                weather.Sun.Sunset = dt.AddSeconds((double)result["sys"]["sunset"]);
+                weather.Sun.Sunrise = dt.AddSeconds((double)result["sys"]["sunrise"]).AddHours(2);
+                weather.Sun.Sunset = dt.AddSeconds((double)result["sys"]["sunset"]).AddHours(2);
                 return weather;
             }
             return null;

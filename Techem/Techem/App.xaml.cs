@@ -1,4 +1,6 @@
 using System;
+using Techem.Data;
+using Techem.Helpers;
 using Techem.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,9 +16,20 @@ namespace Techem
             
 
 			MainPage = new MasterPage();
+            var d = DB;
 		}
 
-		protected override void OnStart ()
+        private static TechemDataBase db;
+        public static TechemDataBase DB {
+            get
+            {
+                if (db == null)
+                    db = new TechemDataBase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TechemSQLite.db3"));
+                return db;
+            }
+        }
+
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
