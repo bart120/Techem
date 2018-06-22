@@ -11,7 +11,9 @@
             <ListView x:Name="CitiesListView" ItemsSource="{Binding Cities}"
                       VerticalOptions="FillAndExpand" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
-                      RefreshCommand="{Binding LoadCitiesCommand}">
+                      RefreshCommand="{Binding LoadCitiesCommand}"
+                      CachingStrategy="RecycleElement"
+                      ItemSelected="ItemSelected_Clicked">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -23,9 +25,9 @@
                                 
                                 <Label Text="{Binding Name}" LineBreakMode="NoWrap" 
                                        FontSize="Large" />
-                                <!-- <Label Text="{Binding Source={x:Reference CitiesListView}, Path=Count}"></Label> -->
+                                <!-- <Label Text="{Binding Source={x:Reference CitiesListView}, Path=BindingContext.Count}"></Label> -->
 
-                                <Button Image="Trash.png" Grid.Column="1" WidthRequest="50" HeightRequest="50" />
+                                <Button Image="Trash.png" Grid.Column="1" WidthRequest="50" HeightRequest="50" Command="{Binding Source={x:Reference CitiesListView}, Path=BindingContext.DeleteCityCommand}" CommandParameter="{Binding .}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

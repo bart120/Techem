@@ -11,14 +11,24 @@ using Xamarin.Forms.Xaml;
 
 namespace Techem.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class WeatherPage : ContentPage
-	{
-		public WeatherPage ()
-		{
-			InitializeComponent ();
-            
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WeatherPage : ContentPage
+    {
+       
+
+        public WeatherPage()
+        {
+            InitializeComponent();
+            MessagingCenter.Subscribe<FavoritesPage, City>(this, App.SELECT_CITY_MESSAGE,
+                async (sender, city) => {
+                    var weather = await WeatherService.GetWeatherByCity(city.Name);
+                    BindingContext = weather;
+                });
+        }
+
+        public WeatherPage(int i) : this()
+        {
+        }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
@@ -53,11 +63,11 @@ namespace Techem.Pages
                 {
                     Name = weather.City
                 };
-                
+
                 await App.DB.SaveAsync(city);
                 await DisplayAlert("Ajouter une ville", $"Enregistrement de {city.Name} OK.", "OK");
             }
-            
+
         }
 
         private async void ButtonFavoris_Clicked(object sender, EventArgs e)

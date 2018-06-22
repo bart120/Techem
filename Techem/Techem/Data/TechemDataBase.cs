@@ -37,5 +37,10 @@ namespace Techem.Data
         {
             return await db.QueryAsync<City>("SELECT * FROM [City];");
         }
+
+        public async Task Delete(City city)
+        {
+            await db.DeleteAsync(city);
+        }
     }
 }

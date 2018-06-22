@@ -15,6 +15,8 @@ namespace Techem.ViewModels
 
         public Command LoadCitiesCommand { get; set; }
 
+        public Command DeleteCityCommand { get; set; }
+
         private int count;
 
         public int Count
@@ -28,6 +30,13 @@ namespace Techem.ViewModels
         {
             Cities = new ObservableCollection<City>();
             LoadCitiesCommand = new Command(async () => await ExecuteLoadCitiesCommand());
+            DeleteCityCommand = new Command(async (city) => await ExecuteDeleteCityCommand(city as City));
+        }
+
+        protected async Task ExecuteDeleteCityCommand(City city)
+        {
+            await App.DB.Delete(city);
+            LoadCitiesCommand.Execute(null);
         }
 
         protected async Task ExecuteLoadCitiesCommand()

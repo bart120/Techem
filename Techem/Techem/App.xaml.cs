@@ -10,7 +10,10 @@ namespace Techem
 {
 	public partial class App : Application
 	{
-		public App ()
+
+        public const string SELECT_CITY_MESSAGE = "SelectCity";
+
+        public App ()
 		{
 			InitializeComponent();
             
