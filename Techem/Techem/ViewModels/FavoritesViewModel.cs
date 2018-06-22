@@ -25,6 +25,8 @@ namespace Techem.ViewModels
             set { SetProperty(ref count, value); }
         }
 
+        
+
 
         public FavoritesViewModel()
         {

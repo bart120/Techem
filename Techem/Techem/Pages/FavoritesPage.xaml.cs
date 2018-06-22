@@ -22,18 +22,25 @@ namespace Techem.Pages
 		}
 
         
-        private async void ItemSelected_Clicked(object sender, SelectedItemChangedEventArgs e)
+        /*private async void ItemSelected_Clicked(object sender, SelectedItemChangedEventArgs e)
         {
             var city = e.SelectedItem as City;
             MessagingCenter.Send(this, App.SELECT_CITY_MESSAGE, city);
             await Navigation.PopModalAsync(true);
-        }
+        }*/
 
         protected override void OnAppearing()
         {
             
             base.OnAppearing();
             viewModel.LoadCitiesCommand.Execute(null);
+        }
+
+        private async void ItemSelected_Clicked(object sender, EventArgs e)
+        {
+            var city = ((MenuItem)sender).CommandParameter as City;
+            MessagingCenter.Send(this, App.SELECT_CITY_MESSAGE, city);
+            await Navigation.PopModalAsync(true);
         }
     }
 }

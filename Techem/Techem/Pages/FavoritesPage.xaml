@@ -12,11 +12,13 @@
                       VerticalOptions="FillAndExpand" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding LoadCitiesCommand}"
-                      CachingStrategy="RecycleElement"
-                      ItemSelected="ItemSelected_Clicked">
+                      CachingStrategy="RecycleElement">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="ItemSelected_Clicked" CommandParameter="{Binding .}" Text="Voir" />
+                            </ViewCell.ContextActions>
                             <Grid Padding="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
