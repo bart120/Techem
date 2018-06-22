@@ -9,6 +9,11 @@
                 <pages:WeatherPage />
             </x:Arguments>
         </NavigationPage>
+        <NavigationPage Title="Capture">
+            <x:Arguments>
+                <pages:CapturePage />
+            </x:Arguments>
+        </NavigationPage>
         <NavigationPage Title="A propos">
             <x:Arguments>
                 <pages:AboutPage />

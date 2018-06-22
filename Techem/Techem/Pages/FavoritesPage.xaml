@@ -12,25 +12,27 @@
                       VerticalOptions="FillAndExpand" HasUnevenRows="True"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding LoadCitiesCommand}"
-                      CachingStrategy="RecycleElement">
+                      CachingStrategy="RecycleElement" ItemTapped="CitiesListView_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Clicked="ItemSelected_Clicked" CommandParameter="{Binding .}" Text="Voir" />
                             </ViewCell.ContextActions>
-                            <Grid Padding="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                
-                                <Label Text="{Binding Name}" LineBreakMode="NoWrap" 
-                                       FontSize="Large" />
-                                <!-- <Label Text="{Binding Source={x:Reference CitiesListView}, Path=BindingContext.Count}"></Label> -->
+                            <StackLayout>
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                                <Button Image="Trash.png" Grid.Column="1" WidthRequest="50" HeightRequest="50" Command="{Binding Source={x:Reference CitiesListView}, Path=BindingContext.DeleteCityCommand}" CommandParameter="{Binding .}" />
-                            </Grid>
+                                    <Label Text="{Binding Name}" LineBreakMode="NoWrap" 
+                                       FontSize="Large" />
+                                    <!-- <Label Text="{Binding Source={x:Reference CitiesListView}, Path=BindingContext.Count}"></Label> -->
+
+                                    <Button Image="Trash.png" Grid.Column="1" WidthRequest="50" HeightRequest="50" Command="{Binding Source={x:Reference CitiesListView}, Path=BindingContext.DeleteCityCommand}" CommandParameter="{Binding .}" />
+                                </Grid>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

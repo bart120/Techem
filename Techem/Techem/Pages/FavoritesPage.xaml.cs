@@ -19,6 +19,16 @@ namespace Techem.Pages
 		{
 			InitializeComponent ();
             BindingContext = viewModel = new FavoritesViewModel();
+
+            this.CitiesListView.ItemSelected += async (object sender, SelectedItemChangedEventArgs e) =>
+            {
+                if (e.SelectedItem == null) return;
+
+                var city = e.SelectedItem as City;
+                MessagingCenter.Send(this, App.SELECT_CITY_MESSAGE, city);
+                await Navigation.PopModalAsync(true);
+                this.CitiesListView.SelectedItem = null;
+            };
 		}
 
         
@@ -41,6 +51,23 @@ namespace Techem.Pages
             var city = ((MenuItem)sender).CommandParameter as City;
             MessagingCenter.Send(this, App.SELECT_CITY_MESSAGE, city);
             await Navigation.PopModalAsync(true);
+        }
+
+        private async void CitiesListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            /*var city = e.Group as City;
+            MessagingCenter.Send(this, App.SELECT_CITY_MESSAGE, city);
+            await Navigation.PopModalAsync(true);*/
+        }
+
+        private async void CitiesListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var city = e.SelectedItem as City;
+            if (city != null)
+            {
+                MessagingCenter.Send(this, App.SELECT_CITY_MESSAGE, city);
+                await Navigation.PopModalAsync(true);
+            }
         }
     }
 }
